@@ -24,8 +24,10 @@ app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'Protected data', userId: req.user.id });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (import.meta.url === `file://${process.argv[1]}`) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 export default app;
